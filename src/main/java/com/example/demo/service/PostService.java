@@ -11,12 +11,11 @@ import java.util.List;
 public class PostService {
     private final List<Post> posts;
 
-    public PostService(List<Post> posts) {
-        this.posts = posts;
-        this.posts.add(new Post("Убийца плачет", new Date()));
-        this.posts.add(new Post("Но он не смог ... поступить иначе", new Date()));
-        this.posts.add(new Post("Прольётся ... кроооооооовь", new Date()));
-        this.posts.forEach(p -> p.setLikes(0));
+    public PostService() {
+        this.posts = new ArrayList<>();
+        this.posts.add(new Post((long)this.posts.size(), "Убийца плачет", new Date()));
+        this.posts.add(new Post((long)this.posts.size(),"Но он не смог ... поступить иначе", new Date()));
+        this.posts.add(new Post((long)this.posts.size(),"Прольётся ... кроооооооовь", new Date()));
     }
 
     public List<Post> listAllPosts() {
@@ -24,8 +23,7 @@ public class PostService {
     }
 
     public void create(String text) {
-        Post post = new Post(text, new Date());
-        post.setLikes(0);
+        Post post = new Post((long)this.posts.size(), text, new Date());
         posts.add(post);
     }
 }
